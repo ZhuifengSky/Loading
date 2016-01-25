@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>demo</title>
+		<meta name="description" content="">
+		<meta name="author" content="pc-zw">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<link type="text/css" href="css/loading.css" />
+		<style type="text/css">
+			#indicatorContainerWrap8,#indicatorContainer8{
+			    display:inline-block;
+			    position:relative;
+			}
+			#prgLogo{
+			    position:absolute;
+			    width:60px;
+			    height:60px;
+			    margin-top:20px;
+			    margin-left:-85px;
+			}
+		</style>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/radialIndicator.js"></script>
+		<script type="text/javascript">
+            function setPerValue(i) {
+                var nums = $('#setPer' + i).val();
+                var radialObj = $('#indicatorContainer' + i).data('radialIndicator');
+                radialObj.animate(nums);
+            }
+
+		</script>
+	</head>
+	<body>
+		<div>
+			<table>
+				<tr>
+					<td><h4>初始化</h4></td>
+					<td width="10px"></td>
+					<td>
+					<div id="indicatorContainerWrap">
+						<div class="rad-prg" id="indicatorContainer"></div>
+					</div></td>
+				</tr>
+				<tr>
+					<td><h4>初始值以及颜色设定</h4></td>
+					<td width="10px"></td>
+					<td>
+					<div id="indicatorContainerWrap2">
+						<div class="rad-prg" id="indicatorContainer2"></div>
+					</div></td>
+				</tr>
+				<tr>
+					<td><h4>根据获取值设定百分比</h4></td>
+					<td width="10px"></td>
+					<td>
+						<div id="indicatorContainerWrap3">
+							<div class="rad-prg" id="indicatorContainer3"></div>
+						</div>
+						<input type="text" id="setPer3"/>
+						<input type="button" value="submit" onclick="setPerValue(3)"/>
+					</td>
+				</tr>
+				<tr>
+					<td><h4>金额圆形加载</h4></td>
+					<td width="10px"></td>
+					<td>
+						<div id="indicatorContainerWrap4">
+							<div class="rad-prg" id="indicatorContainer4"></div>
+						</div>
+						<input type="text" id="setPer4"/>
+					    <input type="button" value="submit" onclick="setPerValue(4)"/>
+				    </td>
+				</tr>
+				<tr>
+					<td><h4>颜色渐变</h4></td>
+					<td width="10px"></td>
+					<td>
+						<div id="indicatorContainerWrap5">
+							<div class="rad-prg" id="indicatorContainer5"></div>
+						</div>
+						<input type="text" id="setPer5"/>
+						<input type="button" value="submit" onclick="setPerValue(5)"/>
+					</td>
+				</tr>
+				<tr>
+					<td><h4>秒针效果</h4></td>
+					<td width="10px"></td>
+					<td>
+					<div id="indicatorContainerWrap6">
+						<div class="rad-prg" id="indicatorContainer6"></div>
+					</div></td>
+				</tr>
+				<tr>
+					<td><h4>文件上传效果</h4></td>
+					<td width="10px"></td>
+					<td>
+						<div id="indicatorContainerWrap7">
+						    <div class="rad-prg" id="indicatorContainer7"></div>
+						    <div class="rad-cntnt">Click / Drop file to select.</div>
+						    <input type="file" id="prgFileSelector" />
+						</div>  
+					</td>
+				</tr>
+				<tr>
+					<td><h4>带Logo加载</h4></td>
+					<td width="10px"></td>
+					<td>
+						<div id="indicatorContainerWrap8">
+						    <div id="indicatorContainer8"></div>
+						    <img src="image/lab_exp.png"  id="prgLogo"/>
+						</div>
+						<input type="text" id="setPer8"/>
+					    <input type="button" value="submit" onclick="setPerValue(8)"/>  
+					</td>
+				</tr>
+			</table>
+
+			<footer>
+				<p>
+					&copy; Copyright  by pc-zw
+				</p>
+			</footer>
+		</div>
+		<script type="text/javascript">
+            //初始化
+            $('#indicatorContainer').radialIndicator();
+            //设置颜色以及初始值
+            $('#indicatorContainer2').radialIndicator({
+                barColor : 'red',
+                barWidth : 10,
+                initValue : 40,
+                roundCorner : true, //
+                percentage : true //百分率
+            });
+            //根据输入的值
+            $('#indicatorContainer3').radialIndicator({
+                barColor : 'yellow',
+                barWidth : 10,
+                initValue : 50,
+                roundCorner : true,
+                percentage : true
+            });
+            //金额
+            $('#indicatorContainer4').radialIndicator({
+                radius : 70,
+                minValue : 10000,
+                maxValue : 10000000,
+                format : '$ ##,##,###'
+            });
+            //颜色渐变
+            $('#indicatorContainer5').radialIndicator({
+                barColor : {
+                    0 : '#FF0000',
+                    33 : '#FFFF00',
+                    66 : '#0066FF',
+                    100 : '#33CC33'
+                },
+                barWidth : 10,
+                initValue : 50,
+                roundCorner : true,
+                percentage : true
+            });
+            //秒针效果加载
+            var radialObj = radialIndicator('#indicatorContainer6', {
+                radius : 60,
+                barWidth : 5,
+                barColor : '#FF0000',
+                minValue : 0,
+                maxValue : 60,
+                fontWeight : 'normal',
+                roundCorner : true,
+                format : function(value) {
+                    var date = new Date();
+                    return date.getHours() + ':' + date.getMinutes();
+                }
+            });
+            setInterval(function() {
+                radialObj.value(new Date().getSeconds() + 1);
+            }, 1000);
+            
+            //文件上传效果
+            //file upload example
+            var container = $('#indicatorContainerWrap7'), msgHolder = container.find('.rad-cntnt'), containerProg = container.radialIndicator({
+                radius : 100,
+                percentage : true,
+                displayNumber : false
+            }).data('radialIndicator');
+            container.on({
+                'dragenter' : function(e) {
+                    msgHolder.html("Drop here");
+                },
+                'dragleave' : function(e) {
+                    msgHolder.html("Click / Drop file to select.");
+                },
+                'drop' : function(e) {
+                    e.preventDefault();
+                    handleFileUpload(e.originalEvent.dataTransfer.files);
+                }
+            });
+
+            $('#prgFileSelector').on('change', function() {
+                handleFileUpload(this.files);
+            });
+
+            function handleFileUpload(files) {
+                msgHolder.hide();
+                containerProg.option('displayNumber', true);
+                var file = files[0], fd = new FormData();
+                fd.append('file', file);
+                $.ajax({
+                    url : 'service/upload.php',
+                    type : 'POST',
+                    data : fd,
+                    processData : false,
+                    contentType : false,
+                    success : function() {
+                        containerProg.option('displayNumber', false);
+                        msgHolder.show().html('File upload done.');
+                    },
+                    xhr : function() {
+                        var xhr = new window.XMLHttpRequest();
+                        //Upload progress
+                        xhr.upload.addEventListener("progress", function(e) {
+                            if (e.lengthComputable) {
+                                var percentComplete = (e.loaded || e.position) * 100 / e.total;
+                                //Do something with upload progress
+                                console.log(percentComplete);
+                                containerProg.animate(percentComplete);
+                            }
+                        }, false);
+
+                        return xhr;
+                    }
+                });
+
+            }
+			//带logo效果
+            $('#indicatorContainer8').radialIndicator({value : 90});
+
+		</script>
+	</body>
+
+</html>
