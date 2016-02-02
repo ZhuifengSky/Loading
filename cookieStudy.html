@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>cookieStudy</title>
+		<meta name="description" content="">
+		<meta name="author" content="pc-zw">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<style type="text/css">
+			/*
+			.cur{
+								color: red;
+								background-color:#C0E3FF; 
+							}*/
+			
+			
+		</style>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script type="text/javascript">
+            $(function() {
+                $("ul li").click(function() {
+                    $("#" + this.id).addClass("cur").siblings().removeClass("cur");
+                    //切换选中后的样式
+                    $("#colortable").attr("href", this.id + ".css");
+                    console.info(s);
+                    //每次切换更换相对应的样式表
+                    $.cookie("cookie", //写入cookie
+                    this.id, //需要cookie写入的业务
+                    {
+                        "path" : "/", //cookie的默认属性
+                        "expires" : 10 //有效天数
+                    });
+
+                });
+                var cookie = $.cookie("cookie");
+                //读取cookie
+                if (cookie) {
+                    $("#" + cookie).addClass("cur").siblings().removeClass("cur");
+                    $("#colortable").attr("href", cookie + ".css");
+                    $.cookie("cookie", cookie, {
+                        "path" : "/",
+                        "expires" : 10
+                    });
+                }
+            });
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>cookieStudy</h1>
+			</header>
+
+			<div>
+			 <ul>
+				<li id="colour_1">
+					红色
+				</li>
+				<li id="colour_2">
+					黑色
+				</li>
+			</ul>
+			</div>
+
+			<footer>
+				<p>
+					&copy; Copyright  by pc-zw
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
